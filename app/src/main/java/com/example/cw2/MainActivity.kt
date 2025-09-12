@@ -39,9 +39,9 @@ class MainActivity : ComponentActivity() {
                         verticalArrangement = Arrangement.spacedBy(24.dp),
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        // 第一个卡片：size + padding + border + background组合
+                        // first card：size + padding + border + background组合
                         ColorCard(
-                            color = Color(0xFF6200EE), // 紫色
+                            color = Color(0xFF6200EE),
                             label = "Card 1",
                             modifier = Modifier
                                 .size(200.dp)
@@ -52,9 +52,9 @@ class MainActivity : ComponentActivity() {
                                 )
                         )
 
-                        // 第二个卡片：size + padding + border + background组合（不同顺序）
+                        // second card：size + padding + border + background
                         ColorCard(
-                            color = Color(0xFF03DAC6), // 青色
+                            color = Color(0xFF03DAC6),
                             label = "Card 2",
                             modifier = Modifier
                                 .padding(12.dp)
@@ -84,12 +84,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-/**
- * 显示带有标签的彩色卡片
- * @param color 卡片的背景颜色
- * @param label 卡片中央显示的文本
- * @param modifier 应用于卡片的修饰符
- */
+
 @Composable
 fun ColorCard(
     color: Color,
@@ -112,9 +107,7 @@ fun ColorCard(
     }
 }
 
-/**
- * 判断颜色是否为深色，用于确定文本颜色
- */
+
 private fun isColorDark(color: Color): Boolean {
     return (0.299 * color.red + 0.587 * color.green + 0.114 * color.blue) <= 0.5
 }
