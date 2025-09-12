@@ -39,7 +39,7 @@ class MainActivity : ComponentActivity() {
                         verticalArrangement = Arrangement.spacedBy(24.dp),
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        // first card：size + padding + border + background组合
+                        // first card：size + padding + border + background
                         ColorCard(
                             color = Color(0xFF6200EE),
                             label = "Card 1",
@@ -47,8 +47,7 @@ class MainActivity : ComponentActivity() {
                                 .size(200.dp)
                                 .padding(8.dp)
                                 .border(
-                                    border = BorderStroke(3.dp, Color.DarkGray),
-                                    shape = MaterialTheme.shapes.medium
+                                    border = BorderStroke(3.dp, Color.DarkGray)
                                 )
                         )
 
@@ -60,22 +59,21 @@ class MainActivity : ComponentActivity() {
                                 .padding(12.dp)
                                 .size(180.dp)
                                 .border(
-                                    border = BorderStroke(5.dp, Color.Black),
-                                    shape = MaterialTheme.shapes.large
+                                    border = BorderStroke(3.dp, Color.Black)
+
                                 )
                         )
 
-                        // 第三个卡片：size + padding + border + background组合（额外添加内部padding）
+                        // third card：size + padding + border + background
                         ColorCard(
-                            color = Color(0xFFFF5722), // 橙色
+                            color = Color(0xFFFF5722),
                             label = "Card 3",
                             modifier = Modifier
+                                .size(200.dp)
+                                .padding(15.dp)
                                 .border(
-                                    border = BorderStroke(2.dp, Color.White),
-                                    shape = MaterialTheme.shapes.small
+                                    border = BorderStroke(3.dp, Color.White)
                                 )
-                                .size(220.dp)
-                                .padding(10.dp)
                         )
                     }
                 }
@@ -91,26 +89,24 @@ fun ColorCard(
     label: String,
     modifier: Modifier = Modifier
 ) {
-    // 在Box中使用background修饰符，确保所有四个修饰符都被使用
+    // Use the background modifier in Box, ensuring that all four modifiers are used.
     Box(
         modifier = modifier
-            .background(color) // 使用background修饰符
+            .background(color)
     ) {
         Text(
             text = label,
-            color = if (isColorDark(color)) Color.White else Color.Black,
+            color = Color.White,
             style = MaterialTheme.typography.titleMedium,
             modifier = Modifier
-                .align(Alignment.Center) // 文本居中
-                .padding(4.dp) // 文本额外内边距
+                .align(Alignment.Center) // Center the text
+                .padding(4.dp) // Extra padding for the text
         )
     }
 }
 
 
-private fun isColorDark(color: Color): Boolean {
-    return (0.299 * color.red + 0.587 * color.green + 0.114 * color.blue) <= 0.5
-}
+
 
 @Preview(showBackground = true)
 @Composable
