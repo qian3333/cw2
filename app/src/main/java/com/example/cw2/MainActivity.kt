@@ -41,28 +41,28 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun KotlinPracticeScreen(modifier: Modifier = Modifier) {
-    // 状态管理
+    // manage status
     var currentAnimal by remember { mutableStateOf("cat") }
     var nullableMessage by remember { mutableStateOf<String?>(null) }
     var counter by remember { mutableStateOf(0) }
 
-    // 切换动物类型的函数
+    // change animals
     fun changeAnimal() {
         currentAnimal = when (currentAnimal) {
             "cat" -> "dog"
             "dog" -> "fish"
             else -> "cat"
         }
-        // 当切换动物时设置nullableMessage
+        // set nullableMessage when changing animals
         nullableMessage = "Current animal changed to $currentAnimal"
     }
 
-    // 使用when表达式处理动物类型
+
     val animalDescription = when (currentAnimal) {
-        "cat" -> "Cats are known for their agility and independence."
-        "dog" -> "Dogs are loyal companions and often called man's best friend."
-        "fish" -> "Fish live in water and breathe through gills."
-        else -> "Unknown animal"
+        "cat" -> "current animal is cat"
+        "dog" -> "current animal is dog"
+        "fish" -> "current animal is fish"
+        else -> "no animals"
     }
 
     Column(
@@ -72,7 +72,7 @@ fun KotlinPracticeScreen(modifier: Modifier = Modifier) {
         verticalArrangement = Arrangement.spacedBy(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // 1. When表达式示例
+        // 1. When changing animals
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Text(text = "Animal Info:", style = MaterialTheme.typography.titleMedium)
             Text(text = "Current: $currentAnimal")
@@ -82,19 +82,19 @@ fun KotlinPracticeScreen(modifier: Modifier = Modifier) {
             }
         }
 
-        // 2. Nullable字符串处理示例 (?.)
+        // 2. Nullable situation (?.)
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Text(text = "Nullable Message:", style = MaterialTheme.typography.titleMedium)
             nullableMessage?.let {
                 Text(text = "Message: $it")
-            } ?: Text(text = "No message available")
+            } ?: Text(text = "Message is null")
 
             Button(onClick = { nullableMessage = null }) {
-                Text("Clear Message")
+                Text("Clear Message(set to null)")
             }
         }
 
-        // 3. 计数器示例 (仅在小于5时递增)
+        // 3.Counter
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Text(text = "Counter:", style = MaterialTheme.typography.titleMedium)
             Text(text = "Current value: $counter")
@@ -104,6 +104,7 @@ fun KotlinPracticeScreen(modifier: Modifier = Modifier) {
             ) {
                 Text("Increment (up to 5)")
             }
+            // reset the number to 0
             Button(onClick = { counter = 0 }) {
                 Text("Reset Counter")
             }
@@ -119,18 +120,4 @@ fun KotlinPracticeScreenPreview() {
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    Cw2Theme {
-        Greeting("Android")
-    }
-}
