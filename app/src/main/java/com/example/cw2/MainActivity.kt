@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -39,7 +38,7 @@ class MainActivity : ComponentActivity() {
                         verticalArrangement = Arrangement.Center,
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        // 显示可点击切换消息的卡片
+                        // show card
                         ToggleCard(
                             modifier = Modifier
                                 .size(300.dp)
@@ -52,27 +51,23 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-/**
- * 可点击切换消息的卡片组件
- * @param modifier 应用于卡片的修饰符
- */
+
 @Composable
 fun ToggleCard(modifier: Modifier = Modifier) {
-    // 使用rememberSaveable保存状态，确保配置变化时状态不丢失
+    // Use rememberSaveable to save state and ensure that the state is not lost during configuration changes.
     var isToggled by rememberSaveable { mutableStateOf(false) }
 
-    // 根据状态决定显示的消息
+    // change the message
     val message = if (isToggled) {
         "Kotlin was created by JetBrains!"
     } else {
         "Tap to see a fun fact!"
     }
 
-    // 卡片组件，点击时切换状态
     Card(
         modifier = modifier,
         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
-        onClick = { isToggled = !isToggled } // 点击事件：切换状态
+        onClick = { isToggled = !isToggled } // on click, change status
     ) {
         Column(
             modifier = Modifier
@@ -83,7 +78,6 @@ fun ToggleCard(modifier: Modifier = Modifier) {
         ) {
             Text(
                 text = message,
-                style = MaterialTheme.typography.titleMedium,
                 textAlign = androidx.compose.ui.text.style.TextAlign.Center
             )
         }
